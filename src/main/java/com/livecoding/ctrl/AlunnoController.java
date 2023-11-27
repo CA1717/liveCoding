@@ -27,29 +27,35 @@ public class AlunnoController
 	@Autowired
 	private AlunnoService alunnoService;
 	
+	@GetMapping("/name/{nome}")
+	public ResponseEntity<String> getNameByParam(@PathVariable String nome)
+	{
+		return new ResponseEntity<String>(alunnoService.getNameParam(nome),HttpStatus.OK);
+	}
+	
 	@GetMapping("/findAll")
 	public ResponseEntity<List<Alunno>> findAll()
 	{
 		return new ResponseEntity<List<Alunno>>(alunnoService.findAll(),HttpStatus.OK);
 	}
 	
-//	@GetMapping("/findByName/{name}")
-//	public ResponseEntity<?> findByName(@PathVariable String name)
-//	{
-//			if(alunnoService.findByName(name) != null)
-//			{
-//				return new ResponseEntity<Alunno>(alunnoService.findByName(name),HttpStatus.OK);
-//			}else
-//			{
-//				return new ResponseEntity<String>("Alunno con questo nome non trovato",HttpStatus.NOT_FOUND);
-//			}
-//	}
-	
 	@GetMapping("/findByName/{name}")
-	public ResponseEntity<Alunno> findByName(@PathVariable String name)
+	public ResponseEntity<?> findByName(@PathVariable String name)
 	{
-		return new ResponseEntity<Alunno>(alunnoService.findByName(name),HttpStatus.OK);
+			if(alunnoService.findByName(name) != null)
+			{
+				return new ResponseEntity<Alunno>(alunnoService.findByName(name),HttpStatus.OK);
+			}else
+			{
+				return new ResponseEntity<String>("Alunno con questo nome non trovato",HttpStatus.NOT_FOUND);
+			}
 	}
+	
+//	@GetMapping("/findByName/{name}")
+//	public ResponseEntity<Alunno> findByName(@PathVariable String name)
+//	{
+//		return new ResponseEntity<Alunno>(alunnoService.findByName(name),HttpStatus.OK);
+//	}
 	
 	@GetMapping("/findAlunno/{id}")
 	public ResponseEntity<Alunno> findById(@PathVariable int id)

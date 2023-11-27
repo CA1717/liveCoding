@@ -54,4 +54,10 @@ public class AlunnoServiceImpl implements AlunnoService
 		return alunnoRepo.findByName(name);
 	}
 
+	@Override
+	public String getNameParam(String par) {
+		// TODO Auto-generated method stub
+		return alunnoRepo.findNameByParam(par);
+	}
+
 }

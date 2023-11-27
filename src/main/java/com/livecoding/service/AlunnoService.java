@@ -7,6 +7,9 @@ import com.livecoding.model.Alunno;
 
 public interface AlunnoService
 {
+	
+	public String getNameParam(String par);
+	
 	public Alunno findById(int id);
 	
 	public Alunno findByName(String name);
